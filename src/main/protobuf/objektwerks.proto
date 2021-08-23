@@ -1,9 +1,5 @@
 syntax = "proto3";
 
-option java_multiple_files = true;
-option java_package = "objektwerks";
-option java_outer_classname = "HelloWorldProto";
-
 service GreeterService {
     rpc SayHello (HelloRequest) returns (HelloReply) {}
     rpc SayHelloToAll (stream HelloRequest) returns (stream HelloReply) {}
