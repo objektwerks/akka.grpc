@@ -15,3 +15,11 @@ Warning
 2. See: https://github.com/scalapb/ScalaPB/issues/1024 for even more details.
 >Resolution:
 1. Add ```PB.protocVersion := "3.17.3"``` to build.sbt
+
+Build
+-----
+1. sbt clean compile
+
+Test
+----
+1. sbt clean test
