@@ -1,30 +1,21 @@
 package objektwerks
 
-import java.security.KeyStore
-import java.security.SecureRandom
-import java.security.cert.Certificate
-import java.security.cert.CertificateFactory
-
-import scala.io.Source
-
 import akka.actor.typed.ActorSystem
 import akka.actor.typed.scaladsl.Behaviors
-import akka.http.scaladsl.ConnectionContext
-import akka.http.scaladsl.Http
-import akka.http.scaladsl.HttpsConnectionContext
-import akka.http.scaladsl.model.HttpRequest
-import akka.http.scaladsl.model.HttpResponse
-import akka.pki.pem.DERPrivateKeyLoader
-import akka.pki.pem.PEMDecoder
-import com.typesafe.config.ConfigFactory
-import javax.net.ssl.KeyManagerFactory
-import javax.net.ssl.SSLContext
+import akka.http.scaladsl.{ConnectionContext, Http, HttpsConnectionContext}
+import akka.http.scaladsl.model.{HttpRequest, HttpResponse}
+import akka.pki.pem.{DERPrivateKeyLoader, PEMDecoder}
 
-import scala.concurrent.ExecutionContext
-import scala.concurrent.Future
-import scala.util.Failure
-import scala.util.Success
+import com.typesafe.config.ConfigFactory
+
+import java.security.{KeyStore, SecureRandom}
+import java.security.cert.{Certificate, CertificateFactory}
+import javax.net.ssl.{KeyManagerFactory, SSLContext}
+
+import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.duration._
+import scala.io.Source
+import scala.util.{Failure, Success}
 
 object GreeterServer {
   def main(args: Array[String]): Unit = {
@@ -37,7 +28,7 @@ object GreeterServer {
 
 class GreeterServer(system: ActorSystem[_]) {
   def run(): Future[Http.ServerBinding] = {
-    implicit val sys = system
+    implicit val sys: ActorSystem[_] = system
     implicit val ec: ExecutionContext = system.executionContext
 
     val service: HttpRequest => Future[HttpResponse] =
@@ -57,7 +48,6 @@ class GreeterServer(system: ActorSystem[_]) {
         println("Failed to bind gRPC endpoint, terminating system", ex)
         system.terminate()
     }
-
     bound
   }
 

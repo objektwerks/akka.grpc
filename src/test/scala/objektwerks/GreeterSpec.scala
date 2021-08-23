@@ -29,7 +29,7 @@ class GreeterSpec
   bound.futureValue
   
   implicit val clientSystem: ActorSystem[_] = ActorSystem(Behaviors.empty, "GreeterClient")
-  val client = GreeterServiceClient(GrpcClientSettings.fromConfig("helloworld.GreeterService"))
+  val client = GreeterServiceClient(GrpcClientSettings.fromConfig("objektwerks.GreeterService"))
 
   override def afterAll: Unit = {
     ActorTestKit.shutdown(clientSystem)
