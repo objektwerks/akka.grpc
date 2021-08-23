@@ -2,6 +2,8 @@ name := "akka.grpc"
 version := "1.0"
 scalaVersion := "2.13.6"
 
+PB.protocVersion := "3.17.3"
+
 lazy val akkaVersion = "2.6.16"
 lazy val akkaHttpVersion = "10.2.6"
 lazy val akkaGrpcVersion = "2.0.0"
