@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package objektwerks;
+
 service GreeterService {
   rpc SayHello (HelloRequest) returns (HelloReply) {}
   rpc SayHelloToAll (stream HelloRequest) returns (stream HelloReply) {}
