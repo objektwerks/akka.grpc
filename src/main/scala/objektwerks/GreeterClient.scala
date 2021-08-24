@@ -1,19 +1,19 @@
 package objektwerks
 
-import akka.{Done, NotUsed}
 import akka.actor.typed.ActorSystem
 import akka.actor.typed.scaladsl.Behaviors
 import akka.grpc.GrpcClientSettings
 import akka.stream.scaladsl.Source
+import akka.{Done, NotUsed}
 
+import scala.concurrent.Future
 import scala.concurrent.duration._
-import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}
 
 object GreeterClient {
   def main(args: Array[String]): Unit = {
-    implicit val sys: ActorSystem[_] = ActorSystem(Behaviors.empty, "GreeterClient")
-    implicit val ec: ExecutionContext = sys.executionContext
+    implicit val system = ActorSystem(Behaviors.empty, "GreeterClient")
+    implicit val ec = system.executionContext
 
     val client = GreeterServiceClient(GrpcClientSettings.fromConfig("objektwerks.GreeterService"))
 
