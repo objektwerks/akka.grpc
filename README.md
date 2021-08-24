@@ -4,17 +4,21 @@ Akka gRpc
 
 Install
 -------
-1. brew install protobuf  { Installs protobuf: stable 3.17.3 }
+1. brew install protobuf
 
-Warning
--------
->Build is broken out-of-the-box due to this dependency error:
+Error
+-----
+>For Apple M1 chip, build breaks with this dependency error:
 * ```protoc-3.15.6-osx-aarch_64.exe: not found```
 >See these issues for more details:
 1. https://github.com/os72/protoc-jar/issues/93
 2. https://github.com/scalapb/ScalaPB/issues/1024
->Resolution:
-1. Add ```PB.protocVersion := "3.17.3"``` to build.sbt
+
+Resolution
+----------
+>For Apple M1 chip:
+1. brew info protobuf  { Note version, i.e., 3.17.3 }
+2. Add ```PB.protocVersion := "3.17.3"``` line to build.sbt
 
 Build
 -----
