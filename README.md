@@ -1,6 +1,7 @@
 Akka gRpc
 ---------
->Project contains Akka gRpc feature tests.
+>Akka gRpc client, server and test.
+>See: https://developer.lightbend.com/guides/akka-grpc-quickstart-scala/
 
 Install
 -------
