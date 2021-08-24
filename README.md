@@ -1,6 +1,6 @@
 Akka gRpc
 ---------
->Akka gRpc client, server and test.
+>Akka gRpc client, server and tests.
 >See: https://developer.lightbend.com/guides/akka-grpc-quickstart-scala/
 
 Install
