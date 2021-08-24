@@ -18,8 +18,9 @@ class GreeterServiceImplSpec
 
   implicit val patience = PatienceConfig(scaled(5.seconds), scaled(100.millis))
   val testKit = ActorTestKit()
-  implicit val system: ActorSystem[_] = testKit.system
-  val service = new GreeterServiceImpl(system)
+
+  implicit val actorSystem: ActorSystem[_] = testKit.system
+  val service = new GreeterServiceImpl(actorSystem)
 
   override def afterAll(): Unit = testKit.shutdownTestKit()
 

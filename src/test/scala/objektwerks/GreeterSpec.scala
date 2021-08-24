@@ -25,13 +25,13 @@ class GreeterSpec
     .parseString("akka.http.server.preview.enable-http2 = on")
     .withFallback(ConfigFactory.defaultApplication())
   val testKit = ActorTestKit(conf)
+
   val serverSystem: ActorSystem[_] = testKit.system
+  implicit val clientSystem: ActorSystem[_] = ActorSystem(Behaviors.empty, "GreeterClient")
+  val client = GreeterServiceClient(GrpcClientSettings.fromConfig("objektwerks.GreeterService"))
 
   val bound = new GreeterServer(serverSystem).run()
   bound.futureValue
-  
-  implicit val clientSystem: ActorSystem[_] = ActorSystem(Behaviors.empty, "GreeterClient")
-  val client = GreeterServiceClient(GrpcClientSettings.fromConfig("objektwerks.GreeterService"))
 
   override def afterAll(): Unit = {
     ActorTestKit.shutdown(clientSystem)
