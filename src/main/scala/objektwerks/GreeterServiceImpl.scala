@@ -7,7 +7,7 @@ import akka.stream.scaladsl.{BroadcastHub, Keep, MergeHub, Sink, Source}
 import scala.concurrent.Future
 
 class GreeterServiceImpl(system: ActorSystem[_]) extends GreeterService {
-  implicit val sys: ActorSystem[_] = system
+  implicit val actorSystem: ActorSystem[_] = system
 
   val (inboundHub: Sink[HelloRequest, NotUsed], outboundHub: Source[HelloReply, NotUsed]) =
     MergeHub
