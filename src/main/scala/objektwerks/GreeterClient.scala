@@ -41,7 +41,8 @@ object GreeterClient {
           .mapMaterializedValue(_ => NotUsed)
 
       val responseStream: Source[HelloReply, NotUsed] = client.sayHelloToAll(requestStream)
-      val done: Future[Done] = responseStream.runForeach(reply => println(s"$name got streaming reply: ${reply.message}"))
+      val done: Future[Done] = responseStream
+        .runForeach(reply => println(s"Streaming broadcast reply for $name received: ${reply.message}"))
       done.onComplete {
         case Success(_) => println(s"Streaming broadcast done.")
         case Failure(error) => println(s"Streaming broadcast error: $error")
