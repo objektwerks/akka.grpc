@@ -15,19 +15,18 @@ class GreeterServiceImplSpec
   with BeforeAndAfterAll
   with Matchers
   with ScalaFutures {
+
+  implicit val patience = PatienceConfig(scaled(5.seconds), scaled(100.millis))
   val testKit = ActorTestKit()
-  implicit val patience: PatienceConfig = PatienceConfig(scaled(5.seconds), scaled(100.millis))
   implicit val system: ActorSystem[_] = testKit.system
   val service = new GreeterServiceImpl(system)
 
-  override def afterAll(): Unit = {
-    testKit.shutdownTestKit()
-  }
+  override def afterAll(): Unit = testKit.shutdownTestKit()
 
   "GreeterServiceImpl" should {
     "reply to single request" in {
-      val reply = service.sayHello(HelloRequest("Bob"))
-      reply.futureValue should ===(HelloReply("Hello, Bob"))
+      val reply = service.sayHello(HelloRequest("Fred Flintstone"))
+      reply.futureValue should ===(HelloReply("Hello, Fred Flintstone"))
     }
   }
 }

@@ -19,8 +19,10 @@ class GreeterSpec
   with BeforeAndAfterAll
   with Matchers
   with ScalaFutures {
-  implicit val patience: PatienceConfig = PatienceConfig(scaled(5.seconds), scaled(100.millis))
-  val conf = ConfigFactory.parseString("akka.http.server.preview.enable-http2 = on")
+
+  implicit val patience = PatienceConfig(scaled(5.seconds), scaled(100.millis))
+  val conf = ConfigFactory
+    .parseString("akka.http.server.preview.enable-http2 = on")
     .withFallback(ConfigFactory.defaultApplication())
   val testKit = ActorTestKit(conf)
   val serverSystem: ActorSystem[_] = testKit.system
@@ -38,8 +40,8 @@ class GreeterSpec
 
   "GreeterService" should {
     "reply to single request" in {
-      val reply = client.sayHello(HelloRequest("Alice"))
-      reply.futureValue should ===(HelloReply("Hello, Alice"))
+      val reply = client.sayHello(HelloRequest("Barney Rebel"))
+      reply.futureValue should ===(HelloReply("Hello, Barney Rebel"))
     }
   }
 }
