@@ -1,12 +1,11 @@
 package objektwerks
 
+import akka.NotUsed
 import akka.actor.typed.ActorSystem
 import akka.actor.typed.scaladsl.Behaviors
 import akka.grpc.GrpcClientSettings
 import akka.stream.scaladsl.Source
-import akka.{Done, NotUsed}
 
-import scala.concurrent.Future
 import scala.concurrent.duration._
 import scala.util.{Failure, Success}
 
@@ -40,9 +39,10 @@ object GreeterClient {
           .map(i => HelloRequest(s"$name-$i"))
           .mapMaterializedValue(_ => NotUsed)
 
-      val responseStream: Source[HelloReply, NotUsed] = client.sayHelloToAll(requestStream)
-      val done: Future[Done] = responseStream
-        .runForeach(reply => println(s"Streaming broadcast reply for $name received: ${reply.message}"))
+      val responseStream = client.sayHelloToAll(requestStream)
+      val done = responseStream.runForeach( reply =>
+        println(s"Streaming broadcast reply for $name received: ${reply.message}")
+      )
       done.onComplete {
         case Success(_) => println(s"Streaming broadcast done.")
         case Failure(error) => println(s"Streaming broadcast error: $error")
