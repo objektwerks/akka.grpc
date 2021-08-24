@@ -16,23 +16,22 @@ object GreeterClient {
     implicit val ec: ExecutionContext = sys.executionContext
 
     val client = GreeterServiceClient(GrpcClientSettings.fromConfig("objektwerks.GreeterService"))
-    val names = if (args.isEmpty) List("Alice", "Bob") else args.toList
-    names.foreach(singleRequestReply)
 
+    val names = if (args.isEmpty) List("Fred Flintstone", "Barney Rebel") else args.toList
+    names.foreach(singleRequestReply)
     if (args.nonEmpty) names.foreach(streamingBroadcast)
 
     def singleRequestReply(name: String): Unit = {
-      println(s"Performing request: $name")
+      println(s"Single request-reply invoked for: $name")
       val reply = client.sayHello(HelloRequest(name))
       reply.onComplete {
-        case Success(msg) => println(msg)
-        case Failure(e) => println(s"Error: $e")
+        case Success(message) => println(s"Single request-reply: $message")
+        case Failure(error) => println(s"Single request-reply error: $error")
       }
     }
 
     def streamingBroadcast(name: String): Unit = {
-      println(s"Performing streaming requests: $name")
-
+      println(s"Streaming broadcast invoked for: $name")
       val requestStream: Source[HelloRequest, NotUsed] =
         Source
           .tick(1.second, 1.second, "tick")
@@ -42,14 +41,10 @@ object GreeterClient {
           .mapMaterializedValue(_ => NotUsed)
 
       val responseStream: Source[HelloReply, NotUsed] = client.sayHelloToAll(requestStream)
-      val done: Future[Done] =
-        responseStream.runForeach(reply => println(s"$name got streaming reply: ${reply.message}"))
-
+      val done: Future[Done] = responseStream.runForeach(reply => println(s"$name got streaming reply: ${reply.message}"))
       done.onComplete {
-        case Success(_) =>
-          println("streamingBroadcast done")
-        case Failure(e) =>
-          println(s"Error streamingBroadcast: $e")
+        case Success(_) => println(s"Streaming broadcast done.")
+        case Failure(error) => println(s"Streaming broadcast error: $error")
       }
     }
   }
