@@ -2,10 +2,6 @@ Akka gRpc
 ---------
 >Akka gRpc client, server and tests. See: https://developer.lightbend.com/guides/akka-grpc-quickstart-scala/
 
-Install
--------
-1. brew install protobuf
-
 Error
 -----
 >For Apple M1 chip, build breaks with this dependency error:
@@ -17,7 +13,7 @@ Error
 Resolution
 ----------
 >For Apple M1 chip:
-1. brew info protobuf  { Note version, i.e., 3.17.3 }
+1. brew install protobuf { Note version, i.e., 3.17.3 }
 2. Add ```PB.protocVersion := "3.17.3"``` line to build.sbt
 
 Build
