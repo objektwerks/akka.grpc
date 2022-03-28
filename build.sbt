@@ -7,7 +7,7 @@ enablePlugins(AkkaGrpcPlugin)
 
 libraryDependencies ++= {
   val akkaVersion = "2.6.19"
-  val akkaHttpVersion = "10.2.6"
+  val akkaHttpVersion = "10.2.9"
   Seq(
     "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
     "com.typesafe.akka" %% "akka-http2-support" % akkaHttpVersion,
