@@ -1,6 +1,6 @@
 Akka gRpc
 ---------
->Akka gRpc client, server and tests. See: https://developer.lightbend.com/guides/akka-grpc-quickstart-scala/
+>Akka gRpc client, Akka-Http server and tests. See: https://developer.lightbend.com/guides/akka-grpc-quickstart-scala/
 
 Error
 -----
