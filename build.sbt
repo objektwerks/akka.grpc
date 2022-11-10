@@ -6,7 +6,7 @@ PB.protocVersion := "3.17.3"
 enablePlugins(AkkaGrpcPlugin)
 
 libraryDependencies ++= {
-  val akkaVersion = "2.6.19"
+  val akkaVersion = "2.7.0"
   val akkaHttpVersion = "10.2.9"
   Seq(
     "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
