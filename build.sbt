@@ -6,8 +6,8 @@ PB.protocVersion := "3.17.3"
 enablePlugins(AkkaGrpcPlugin)
 
 libraryDependencies ++= {
-  val akkaVersion = "2.6.20" // Don't upgrade due to BSL 1.1!
-  val akkaHttpVersion = "10.2.10" // Don't upgrade due to BSL 1.1!
+  val akkaVersion = "2.6.20" // Don't upgrade due to BUSL 1.1!
+  val akkaHttpVersion = "10.2.10" // Don't upgrade due to BUSL 1.1!
   Seq(
     "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
     "com.typesafe.akka" %% "akka-http2-support" % akkaHttpVersion,
