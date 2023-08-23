@@ -23,7 +23,7 @@ object GreeterServer {
       .parseString("akka.http.server.preview.enable-http2 = on")
       .withFallback(ConfigFactory.defaultApplication())
     val system = ActorSystem[Nothing](Behaviors.empty, "GreeterServer", conf)
-    new GreeterServer(system).run()
+    new GreeterServer(system).run() : Unit
   }
 }
 
