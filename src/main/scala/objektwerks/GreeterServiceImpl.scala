@@ -19,7 +19,7 @@ class GreeterServiceImpl(system: ActorSystem[_]) extends GreeterService {
   override def sayHello(request: HelloRequest): Future[HelloReply] = Future.successful(HelloReply(s"Hello, ${request.name}"))
 
   override def sayHelloToAll(in: Source[HelloRequest, NotUsed]): Source[HelloReply, NotUsed] = {
-    in.runWith(inboundHub) : Unit
+    in.runWith(inboundHub)
     outboundHub
   }
 }
