@@ -42,9 +42,9 @@ class GreeterServer(system: ActorSystem[_]) {
     bound.onComplete {
       case Success(binding) =>
         val address = binding.localAddress
-        println("Server bound to {}:{}", address.getHostString, address.getPort)
+        println(s"Server bound to ${address.getHostString}:${address.getPort}")
       case Failure(error) =>
-        println("Server bind failed, terminating ...", error)
+        println(s"Server bind failed: $error")
         system.terminate()
     }
     bound
