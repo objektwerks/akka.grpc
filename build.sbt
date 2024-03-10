@@ -15,7 +15,7 @@ libraryDependencies ++= {
     "com.typesafe.akka" %% "akka-stream" % akkaVersion,
     "com.typesafe.akka" %% "akka-discovery" % akkaVersion,
     "com.typesafe.akka" %% "akka-pki" % akkaVersion,
-    "ch.qos.logback" % "logback-classic" % "1.5.2",
+    "ch.qos.logback" % "logback-classic" % "1.5.3",
     "com.typesafe.akka" %% "akka-actor-testkit-typed" % akkaVersion % Test,
     "com.typesafe.akka" %% "akka-stream-testkit" % akkaVersion % Test,
     "org.scalatest" %% "scalatest" % "3.2.18" % Test
