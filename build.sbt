@@ -1,6 +1,6 @@
 name := "akka.grpc"
 version := "0.1-SNAPSHOT"
-scalaVersion := "2.13.13"
+scalaVersion := "2.13.14"
 PB.protocVersion := "3.20.3"
 
 enablePlugins(AkkaGrpcPlugin)
